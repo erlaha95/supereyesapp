@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf Hello World Example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous" />
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Spring Boot</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="">Home</a></li>
+					<li class="dropdown"><a href="/tests" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Tests <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="tests">All</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="tests/showAddForm">Create test</a></li>
+						</ul></li>
+					<li><a href="exercises">Exercises</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="starter-template">
+
+			<h1 th:text="'Test: ' + ${test.name}"></h1>
+			<br />
+			<h4>List of questions</h4>
+			<form action="#" th:action="@{submit}" th:object="${form}"
+				method="post">
+				<div th:each="q, index : ${test.questions}" class="testsList"
+					th:unless="${#lists.isEmpty(test.questions)}">
+					<!-- Project One -->
+					<div class="row">
+						<div class="col-md-7">
+							<a href="#"> <img class="img-responsive"
+								th:src="${q.imagePath}" alt="http://placehold.it/700x300"
+								style="width: 100%; height: 150px;" />
+							</a>
+						</div>
+						<div class="col-md-5">
+							<h3 th:text="${q.questionText}"></h3>
+							<div th:each="a, stat : ${q.answers}" class="answersList" th:unless="${#lists.isEmpty(q.answers)}">
+								<input type="radio" th:name="|answersList[${index}]|" th:field="*{answersList}" th:value="${a}" th:text="${a.answerText}" />
+							</div>
+						</div>
+					</div>
+					<!-- /.row -->
+
+					<hr />
+				</div>
+				<button type="submit" class="btn btn-primary">Create</button>
+			</form>
+		</div>
+
+	</div>
+	<!-- /.container -->
+	<script>
+	    function rowClicked(value) {
+	        location.href = "/tests/" + value;
+	    }
+</script>
+</body>
+</html>
