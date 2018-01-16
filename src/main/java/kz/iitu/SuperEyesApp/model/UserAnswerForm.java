@@ -4,13 +4,13 @@ import java.util.List;
 
 public class UserAnswerForm {
 	
-	private List<Answer> answersList;
+	private List<Integer> answersList;
 
-	public List<Answer> getAnswersList() {
+	public List<Integer> getAnswersList() {
 		return answersList;
 	}
 
-	public void setAnswersList(List<Answer> answersList) {
+	public void setAnswersList(List<Integer> answersList) {
 		this.answersList = answersList;
 	}
 

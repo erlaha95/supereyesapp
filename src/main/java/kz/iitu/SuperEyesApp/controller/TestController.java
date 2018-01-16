@@ -16,6 +16,7 @@ import kz.iitu.SuperEyesApp.model.Answer;
 import kz.iitu.SuperEyesApp.model.Exam;
 import kz.iitu.SuperEyesApp.model.Test;
 import kz.iitu.SuperEyesApp.model.UserAnswerForm;
+import kz.iitu.SuperEyesApp.repository.AnswerRepository;
 import kz.iitu.SuperEyesApp.repository.TestRepository;
 
 @Controller
@@ -25,17 +26,23 @@ public class TestController {
 	@Autowired
 	private TestRepository testRepo;
 	
+	@Autowired
+	private AnswerRepository answerRepo;
+	
 	@PostMapping("/submit")
-	public String submitTest(@ModelAttribute("form") UserAnswerForm form) {
+	public String submitTest(@ModelAttribute("form") UserAnswerForm form, Model model) {
 		
 		int count = 0;
-		for (Answer a : form.getAnswersList()) {
+		List<Answer>answers = new ArrayList<>();
+		for (Integer i : form.getAnswersList()) {
+			Answer a = answerRepo.findOne(i);
 			if (a.isCorrect())
-				count++;
+				count ++;
 		}
-		System.out.println(">> count:  " + count);
+		String result = "You've got " + count + " out of " + form.getAnswersList().size() + " correct!!";
+		model.addAttribute("result",result);
 		
-		return "redirect:/tests";
+		return "test_result";
 	}
 	
 	@GetMapping("/{testId}")
