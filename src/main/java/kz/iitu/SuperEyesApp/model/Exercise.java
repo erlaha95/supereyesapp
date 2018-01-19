@@ -20,7 +20,11 @@ public class Exercise implements Serializable {
 	private Integer id;
 	
 	private String name;
+	
+	@Column(columnDefinition="LONGTEXT")
 	private String instructions;
+	
+	private String imagePath;
 	
 	@Column(name="is_active")
 	private boolean isActive;
@@ -35,6 +39,14 @@ public class Exercise implements Serializable {
 		this.isActive = isActive;
 	}
 	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	public Integer getId() {
 		return id;
 	}

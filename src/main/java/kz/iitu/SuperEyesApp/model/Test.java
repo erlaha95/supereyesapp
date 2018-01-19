@@ -39,9 +39,6 @@ public class Test {
 			)
 	private List<Question>questions = new ArrayList<Question>();
 	
-	@Transient
-	private List<Integer> selectedAnswers;
-	
 	private int active;
 	
 	public Test() {
@@ -57,14 +54,6 @@ public class Test {
 		if (questions == null)
 			questions = new ArrayList<Question>();
 		questions.add(question);
-	}
-
-	public List<Integer> getSelectedAnswers() {
-		return selectedAnswers;
-	}
-
-	public void setSelectedAnswers(List<Integer> selectedAnswers) {
-		this.selectedAnswers = selectedAnswers;
 	}
 
 	public String getName() {
