@@ -29,10 +29,10 @@ public class TestController {
 	public String submitTest(@ModelAttribute("form") UserAnswerForm form) {
 		
 		int count = 0;
-		for (Answer a : form.getAnswersList()) {
-			if (a.isCorrect())
-				count++;
-		}
+//		for (Answer a : form.getAnswersList()) {
+//			if (a.isCorrect())
+//				count++;
+//		}
 		System.out.println(">> count:  " + count);
 		
 		return "redirect:/tests";
@@ -44,8 +44,10 @@ public class TestController {
 		
 		Test test = testRepo.getOne(testId);
 		UserAnswerForm form  = new UserAnswerForm();
+		form.setAnswersList(new ArrayList<>(test.getQuestions().size()));
 		//List<Answer>answers = new ArrayList<>(test.getQuestions().size());
 		//Exam exam = new Exam(test, new ArrayList<Answer>());
+		form.setSuka(0);
 		
 		model.addAttribute("test", test);
 		model.addAttribute("form", form);
