@@ -49,15 +49,17 @@
 						<div class="col-md-7">
 							<a href="#"> <img class="img-responsive"
 								th:src="${q.imagePath}" alt="http://placehold.it/700x300"
-								style="width: 100%; height: 150px;" />
+								style="width: 50%; height: 50%; display: block; margin: 0 auto;" />
 							</a>
 						</div>
 						<div class="col-md-5">
 							<h3 th:text="${q.questionText}"></h3>
 							<div th:each="a, stat : ${q.answers}" class="answersList" th:unless="${#lists.isEmpty(q.answers)}">
-								<!-- <input type="radio" th:name="|answersList[${index}]|" th:field="*{answersList}" th:value="${a}" th:text="${a.answerText}" /> -->
-								<input type="radio" th:name="|answersList[${index.index}]|" 
-									th:value="${a.id}" th:text="${a.answerText}"/>
+								<div class="checkbox">
+									<input type="radio" th:name="|answersList[${index.index}]|" 
+									th:value="${a.id}"/>
+									<label th:text="${a.answerText}"></label>
+								</div>
 							</div>
 						</div>
 					</div>
