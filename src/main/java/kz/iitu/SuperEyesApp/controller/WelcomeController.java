@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import kz.iitu.SuperEyesApp.model.News;
 import kz.iitu.SuperEyesApp.repository.NewsRepository;
@@ -16,11 +15,6 @@ public class WelcomeController {
 	
 	@Autowired
 	private NewsRepository newsRepo;
-	
-	@ModelAttribute("module")
-	String module() {
-		return "home";
-	}
 	
 	@GetMapping("/")
 	public String index(Model model) {
