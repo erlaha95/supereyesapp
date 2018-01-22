@@ -22,7 +22,7 @@ public class WelcomeController {
 		return "home";
 	}
 	
-	@GetMapping
+	@GetMapping("/")
 	public String index(Model model) {
 		List<News>news = newsRepo.findAll();
 		model.addAttribute("newsList", news);
