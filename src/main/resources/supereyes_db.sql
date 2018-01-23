@@ -7,20 +7,6 @@
 -- Версия сервера: 5.6.35
 -- Версия PHP: 7.1.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
---
--- База данных: `super_eyes_db`
---
-CREATE DATABASE IF NOT EXISTS `super_eyes_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `super_eyes_db`;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `answers`
---
 
 CREATE TABLE `answers` (
   `id` int(11) NOT NULL,

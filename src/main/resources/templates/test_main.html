@@ -12,39 +12,16 @@
 			<div class="col-md-8">
 
 				<h1 class="my-4">
-					Новости <small>Забота о зрении</small>
+					Тесты <small>Проверка зрения</small>
 				</h1>
-
-				<!-- <div class="testsList" th:unless="${#lists.isEmpty(tests)}">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Наименование</th>
-								<th scope="col">Описание</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="test : ${tests}" scope="row"
-								th:onclick="'javascript:rowClicked(\'' + ${test.id} + '\');'"
-								onclick="window.location='/tests/';" style="cursor: pointer;">
-								<td th:text="${test.name}">name</td>
-								<td th:text="${test.testDescription}">descr</td>
-							</tr>
-						</tbody>
-					</table>
-				</div> -->
 
 				<div class="card mb-4" th:each="test : ${tests}"
 					th:unless="${#lists.isEmpty(tests)}">
-					<img class="card-img-top" src="http://zozhnik.ru/wp-content/uploads/2015/08/24.jpg"
-						alt="Card image cap" />
+					<!-- <img class="card-img-top" src="http://zozhnik.ru/wp-content/uploads/2015/08/24.jpg"
+						alt="Card image cap" /> -->
 					<div class="card-body">
 						<h2 class="card-title" th:text="${test.name}">Post Title</h2>
-						<p class="card-text" th:text="${test.testDescription}">Lorem ipsum
-							dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid
-							atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta
-							expedita corporis animi vero voluptate voluptatibus possimus,
-							veniam magni quis!</p>
+						<p class="card-text" th:text="${test.testDescription}">Lorem ipsum</p>
 						<a th:href="@{'/tests/'+${test.id}}" class="btn btn-primary">Подробнее &rarr;</a>
 					</div>
 					<div class="card-footer text-muted">
