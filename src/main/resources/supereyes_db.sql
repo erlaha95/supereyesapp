@@ -1,12 +1,32 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
+-- version 4.7.1
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost:3306
--- Время создания: Янв 17 2018 г., 18:54
--- Версия сервера: 5.6.35
--- Версия PHP: 7.1.8
+-- Хост: sql12.freemysqlhosting.net
+-- Время создания: Янв 23 2018 г., 04:38
+-- Версия сервера: 5.5.58-0ubuntu0.14.04.1
+-- Версия PHP: 7.0.22-0ubuntu0.16.04.1
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- База данных: `sql12217271`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `answers`
+--
 
 CREATE TABLE `answers` (
   `id` int(11) NOT NULL,
@@ -20,12 +40,21 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id`, `answer_text`, `is_correct`, `question_id`) VALUES
-(1, 'Square', b'0', 1),
-(2, 'Circle', b'0', 1),
-(3, 'Triangle', b'1', 1),
-(4, 'Square', b'0', 2),
-(5, 'Circle', b'0', 2),
-(6, 'Triangle', b'1', 2);
+(1, 'Квадрат', b'0', 1),
+(2, 'Круг', b'0', 1),
+(3, 'Треугольник и круг', b'1', 1),
+(4, '5', b'0', 2),
+(5, '9', b'1', 2),
+(6, '6', b'0', 2),
+(7, 'Круг', b'0', 3),
+(8, 'Треугольник', b'1', 3),
+(9, '13', b'1', 4),
+(10, '6', b'0', 4),
+(11, 'Только круг', b'0', 5),
+(12, 'Ничего', b'0', 5),
+(13, 'Круг и треугольник', b'1', 5),
+(14, '6', b'0', 6),
+(15, '6 и 9', b'1', 6);
 
 -- --------------------------------------------------------
 
@@ -88,8 +117,12 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `is_active`, `image_path`, `question_text`) VALUES
-(1, b'1', 'https://www.quia.com/files/quia/users/houstonfinley/Trianglevocab/Triangle(shape).jpg', 'What is the name of this shape?'),
-(2, b'1', 'https://pbs.twimg.com/profile_images/905183271046193153/q_P1KBUJ_400x400.jpg', 'What is the name of this shape?');
+(1, b'1', 'http://rosautopark.ru/sites/default/files/mark_photos/d2.jpg?1416411438', 'Что вы видите на картинке?'),
+(2, b'1', 'http://rosautopark.ru/sites/default/files/mark_photos/d3.jpg?1416411453', 'Что вы видите на картинке?'),
+(3, b'1', 'http://rosautopark.ru/sites/default/files/mark_photos/d4.jpg?1416411473', 'Что вы видите на картинке?'),
+(4, b'1', 'http://rosautopark.ru/sites/default/files/mark_photos/d5.jpg?1416411489', 'Что вы видите на картинке?'),
+(5, b'1', 'http://rosautopark.ru/sites/default/files/mark_photos/d6.jpg?1416411506', 'Что вы видите на картинке?'),
+(6, b'1', 'http://rosautopark.ru/sites/default/files/mark_photos/d7.jpg?1416411526', 'Что вы видите на картинке?');
 
 -- --------------------------------------------------------
 
@@ -101,7 +134,7 @@ CREATE TABLE `tests` (
   `id` bigint(20) NOT NULL,
   `active` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `test_description` varchar(255) DEFAULT NULL
+  `test_description` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -109,7 +142,7 @@ CREATE TABLE `tests` (
 --
 
 INSERT INTO `tests` (`id`, `active`, `name`, `test_description`) VALUES
-(1, 1, 'First test', 'simple test'),
+(1, 1, 'Тест на Дальтонизм', 'Дальтонизм – это уменьшение восприятия к цветовой гамме, которую здоровые люди прекрасно могут различать. Главной причиной невосприимчивости к цветам, может являться наследственный фактор, связанный с хромосомными нарушениями, которые чаще передаются от матери к сыну, поэтому дальтонизмом чаще страдают мужчины. \r\nЭто заболевание было открыто в 1798 году английским учёным Джоном Дальтоном, который, нашёл это расстройство у себя. Дальтон назвал это заболевание дальтонизмом, хотя, в настоящее время, это понятие характеризует дальтонизм только одного типа – дейтеранопии (нарушения восприятия отдельных цветов, чаще всего зелёного). В настоящее время, открыто ещё несколько типов дальтонизма.'),
 (2, 0, 'Test 2', 'Some test 2');
 
 -- --------------------------------------------------------
@@ -129,7 +162,11 @@ CREATE TABLE `tests_questions` (
 
 INSERT INTO `tests_questions` (`test_id`, `question_id`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6);
 
 --
 -- Индексы сохранённых таблиц
@@ -181,7 +218,7 @@ ALTER TABLE `tests_questions`
 -- AUTO_INCREMENT для таблицы `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `exercises`
 --
@@ -196,7 +233,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT для таблицы `tests`
 --
@@ -218,3 +255,8 @@ ALTER TABLE `answers`
 ALTER TABLE `tests_questions`
   ADD CONSTRAINT `FK1m8yxbuf1fednn6cr36idxu2n` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),
   ADD CONSTRAINT `FKs4sbg3hhny26jjm325oond5f1` FOREIGN KEY (`test_id`) REFERENCES `tests` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
