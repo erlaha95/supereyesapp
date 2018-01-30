@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javassist.NotFoundException;
 import kz.iitu.SuperEyesApp.model.Answer;
 import kz.iitu.SuperEyesApp.model.Test;
 import kz.iitu.SuperEyesApp.model.UserAnswerForm;
@@ -46,9 +47,12 @@ public class TestController {
 	}
 	
 	@GetMapping("/{testId}")
-	public String editTestForm(@PathVariable("testId") Long testId, Model model) {
+	public String editTestForm(@PathVariable("testId") Long testId, Model model) throws NotFoundException {
 		
-		Test test = testRepo.getOne(testId);
+		Test test = testRepo.findOne(testId);
+		if (test == null)
+			throw new NotFoundException("Тест не найден");
+		
 		UserAnswerForm form  = new UserAnswerForm();
 		
 		model.addAttribute("test", test);
