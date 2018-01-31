@@ -34,7 +34,7 @@ public class GameController {
 	@GetMapping
 	public String showAllGames(Model model) {
 		List<Game>games = new ArrayList<>();
-		games = gameRepo.findAll();
+		games = gameRepo.findAllEnabled();
 		model.addAttribute("games", games);
 		
 		return "games";

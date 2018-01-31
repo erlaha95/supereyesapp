@@ -14,6 +14,10 @@
           <h1 class="my-4">Игры для тренировки зрения
             <small></small>
           </h1>
+          <div>
+          	<iframe frameborder="0" width="100%" height="100%" 
+          		th:src="${game.flashGameUrl}"></iframe>
+          </div>
           
           <!-- Blog Post -->
           <div class="card mb-4" th:each="game : ${games}" th:unless="${#lists.isEmpty(games)}">
@@ -25,8 +29,6 @@
               <a th:href="@{'/games/'+${game.id}}" class="btn btn-primary">Играть &rarr;</a>
             </div>
             <div class="card-footer text-muted">
-              Posted on January 1, 2017 by
-              <a href="#">Start Bootstrap</a>
             </div>
           </div>
 
