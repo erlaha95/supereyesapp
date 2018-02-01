@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="@{fragments/header}"></div>
+<body>
+	<div class="quizBG"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="quizTitle">How much do you know about Mount Rainier?</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="result"></h2>
+			</div>
+		</div>
+
+		<div class="row resultsBtns">
+			<div class="col-sm-offset-0 col-sm-4 col-xs-offset-1 col-xs-10">
+				<a class="btn btn-lg btn-primary btnTwitter" id="twitterbtn"
+					href="https://twitter.com/intent/tweet?text=I%20scored%20X%20percent%20on%20a%20quiz!%20Try%20it%20yourself%20at%20https%3A%2F%2Fhnotess.github.io%2Fquiz-builder%2F">Tweet
+					my results <i class="fa fa-twitter" aria-hidden="true"></i>
+				</a>
+			</div>
+			<div class="col-sm-offset-0 col-sm-4 col-xs-offset-1 col-xs-10">
+				<div class="btn btn-lg btn-primary btnFB" id="facebookbtn"
+					data-href="https://hnotess.github.io/quiz-builder/index.html"
+					data-layout="button" data-size="large" data-mobile-iframe="true">
+					<a class="fb-xfbml-parse-ignore" target="_blank"
+						href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhnotess.github.io%2Fquiz-builder%2Findex.html&amp;src=sdkpreparse">Share
+						my results <i class="fa fa-facebook" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+			<div class="col-sm-offset-0 col-sm-4 col-xs-offset-1 col-xs-10">
+				<a class="btn btn-lg btn-primary btnRetake" href="index.html">Take
+					Quiz Again <i class="fa fa-repeat" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div th:replace="@{fragments/footer}"></div>
+</body>
+</html>

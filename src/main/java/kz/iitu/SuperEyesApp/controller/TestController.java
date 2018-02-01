@@ -46,6 +46,16 @@ public class TestController {
 		return "test_result";
 	}
 	
+	@GetMapping("/test1")
+	public String showTest1() {
+		return "test_async";
+	}
+	
+	@GetMapping("/success")
+	public String showTestSuccess() {
+		return "success";
+	}
+	
 	@GetMapping("/{testId}")
 	public String editTestForm(@PathVariable("testId") Long testId, Model model) throws NotFoundException {
 		

@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="@{fragments/header}"></div>
+
+<body>
+
+	<div th:replace="@{fragments/menu}"></div>
+	<!-- <div class="quizBG"></div> -->
+	<div class="container">
+
+		<div class="row">
+
+			<!-- Blog Entries Column -->
+			<div class="col-md-8">
+
+				<h1 class="my-4">
+					Новости <small>Забота о зрении</small>
+				</h1>
+
+					
+				
+				<div id="questionNow" class="row intro">
+					<div class="col-sm-offset-2 col-sm-8">
+						<div class="introContainer">
+							<button class="btn btn-lg btn" id="getStarted">
+								Take the quiz! <i class="fa fa-chevron-right"
+									aria-hidden="true"></i>
+							</button>
+							<img class="img-responsive" src="/images/siteImages/rainier.jpg"
+								alt="Mount Rainier" />
+						</div>
+					</div>
+				</div>
+				<div class="questionContainer"></div>
+
+			</div>
+
+			<!-- Sidebar Widgets Column -->
+			<div class="col-md-4">
+
+				<div th:replace="@{fragments/widgets}"></div>
+
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<div th:replace="@{fragments/footer}"></div>
+
+</body>
+</html>
