@@ -21,6 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="questions")
 public class Question {
@@ -102,7 +105,8 @@ public class Question {
 	public void setActive(boolean active) {
 		this.isActive = active;
 	}
-
+	
+	@JsonProperty("question")
 	public String getQuestionText() {
 		return questionText;
 	}
@@ -118,7 +122,8 @@ public class Question {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-
+	
+	@JsonProperty("question_id")
 	public Integer getId() {
 		return id;
 	}
@@ -126,7 +131,8 @@ public class Question {
 	public Set<Answer> getAnswers() {
 		return answers;
 	}
-
+	
+	@JsonIgnore
 	public List<Test> getTests() {
 		return tests;
 	}

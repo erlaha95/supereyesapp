@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="answers")
 public class Answer {
@@ -40,7 +43,8 @@ public class Answer {
 	public Integer getId() {
 		return id;
 	}
-
+	
+	@JsonProperty("text")
 	public String getAnswerText() {
 		return answerText;
 	}
@@ -56,7 +60,8 @@ public class Answer {
 	public void setCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
-
+	
+	@JsonIgnore
 	public Question getQuestion() {
 		return question;
 	}

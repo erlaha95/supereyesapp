@@ -216,9 +216,21 @@ window.onload = init;
 
 // get the quiz data from the external JSON file
 function getData() {
-	$.getJSON("/quizdata.json", function(
-			data) {
-		quizSetupv2(data);
+//	$.getJSON("/api/tests/1", function(
+//			data) {
+//		console.log(data);
+//		quizSetupv2(data.questions);
+//	});
+	
+	$.ajax
+	({
+		url: "/api/tests/1",
+		type: 'GET',
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            quizSetupv2(res.questions);
+        }
 	});
 }
 
@@ -227,25 +239,31 @@ function getData() {
 function quizSetupv2(quizData) {
 	var qID;
 	var qText;
+	var qImage;
 	var qAnswers;
 	var qLength;
 	var qCorrectAnswers = []
 	// loop through JSON objects
 	for (i = 0; i < quizData.length; i++) {
-		qID = (quizData[i].question_id + 1);
+		qID = (quizData[i].question_id);
 		qText = quizData[i].question;
+		qImage = quizData[i].imagePath;
 		qAnswers = quizData[i].answers;
 		qLength = quizData.length;
 		qLength = qLength.toString();
-		qCorrectAnswers.push(quizData[i].correct);
+		for (j = 0; j < qAnswers.length; j ++) {
+			if (qAnswers[j].correct) {
+				qCorrectAnswers.push(qAnswers[j].id);
+			}
+		}
 		// send each object to build function
-		buildQuiz(qID, qText, qAnswers, qLength, qCorrectAnswers);
+		buildQuiz(qID, qText, qImage, qAnswers, qLength, qCorrectAnswers);
 	}
 	quizSetup();
 }
 
 // answer level - this function is executed at each cycle of the above question loop 
-function buildQuiz(qID, qText, qAnswers, qLength, qCorrectAnswers) {
+function buildQuiz(qID, qText, qImage, qAnswers, qLength, qCorrectAnswers) {
 	// store array for correct answers
 	localStorage.setItem('correctAnswers', qCorrectAnswers);
 	// array for answers
@@ -284,6 +302,9 @@ function buildQuiz(qID, qText, qAnswers, qLength, qCorrectAnswers) {
 			+ qLength
 			+ '</span> '
 			+ qText
+			+ '<img src="'
+			+ qImage
+			+'"/>'
 			+ '</h2><span class="quizAlert">This question requires an answer</span><div class="row justify-content-between">';
 	var quizBottom = '</div><footer><div class="row"><div class="col-sm-offset-3 col-sm-3 col-xs-6"><button class="btn btn-lg btn-default btnBack inactive"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button></div><div class="col-sm-3 col-xs-6"><button class="btn btn-lg btn-default btnNext">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></button></div></div></footer></section>';
 	// assemble HTML parts
