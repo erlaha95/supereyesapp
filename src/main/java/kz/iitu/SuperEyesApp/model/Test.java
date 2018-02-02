@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="tests")
@@ -41,6 +45,17 @@ public class Test {
 	
 	private int active;
 	
+//	@Enumerated(EnumType.STRING)
+//	private TestType testType;
+	@Column(name="success_message")
+	private String successMessage;
+	
+	@Column(name="failure_message")
+	private String failureMessage;
+	
+	@Column(name="min_success_percent")
+	private int minPercentForSuccess;
+	
 	public Test() {
 	}
 
@@ -54,6 +69,31 @@ public class Test {
 		if (questions == null)
 			questions = new ArrayList<Question>();
 		questions.add(question);
+	}
+	
+	
+	public int getMinPercentForSuccess() {
+		return minPercentForSuccess;
+	}
+
+	public void setMinPercentForSuccess(int minPercentForSuccess) {
+		this.minPercentForSuccess = minPercentForSuccess;
+	}
+
+	public String getSuccessMessage() {
+		return successMessage;
+	}
+
+	public void setSuccessMessage(String successMessage) {
+		this.successMessage = successMessage;
+	}
+	
+	public String getFailureMessage() {
+		return failureMessage;
+	}
+
+	public void setFailureMessage(String failureMessage) {
+		this.failureMessage = failureMessage;
 	}
 
 	public String getName() {

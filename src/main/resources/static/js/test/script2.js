@@ -218,14 +218,16 @@ window.onload = init;
 function getData() {
 	
 	var pathArray = window.location.pathname.split( '/' );
-	var lastLevelLocation=pathArray[pathArray.length-1];
+	var testId=pathArray[pathArray.length-1];
 	console.log(pathArray);
-	console.log(lastLevelLocation);
+	console.log(testId);
+	
+	localStorage.setItem('testId', testId);
 	
 	$('#indicator').show();
 	$.ajax
 	({
-		url: "/api/tests/" + lastLevelLocation,
+		url: "/api/tests/" + testId,
 		type: 'GET',
         dataType: 'json', // added data type
         success: function(res) {

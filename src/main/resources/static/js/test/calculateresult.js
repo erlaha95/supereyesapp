@@ -27,7 +27,32 @@ function checkResult(userAnswers, correctAnswers) {
 }
 
 //display result in success page
-function displayResult() {
-  $('.result').html('Вы набрали <span class="displayPercent">' + checkResult(userAnswers, correctAnswers) + '%</span>');
+function displayResult(var result) {
+	if(checkResult(userAnswers, correctAnswers) > result.minPercentForSuccess){
+		 $('.result').html('Вы набрали <span class="displayPercent">' + checkResult(userAnswers, correctAnswers) + '%. '+  result.successMessage+'</span>');
+	} else {
+		$('.result').html('Вы набрали <span class="displayPercent">' + checkResult(userAnswers, correctAnswers) + '%. '+  result.failureMessage+'</span>');
+	}
 }
-window.onload = displayResult;
+
+function getResultMessage() {
+	
+	var testId = localStorage.getItem('testId');
+	
+	$('#indicator').show();
+	$.ajax
+	({
+		url: "/api/tests/" + testId,
+		type: 'GET',
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            $('#indicator').hide();
+            displayResult(res);
+            
+        }
+	});
+}
+
+
+window.onload = getResultMessage;
