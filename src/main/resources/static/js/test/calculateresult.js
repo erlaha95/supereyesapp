@@ -28,6 +28,6 @@ function checkResult(userAnswers, correctAnswers) {
 
 //display result in success page
 function displayResult() {
-  $('.result').html('You scored <span class="displayPercent">' + checkResult(userAnswers, correctAnswers) + ' percent</span> on the quiz!');
+  $('.result').html('Вы набрали <span class="displayPercent">' + checkResult(userAnswers, correctAnswers) + '%</span>');
 }
 window.onload = displayResult;

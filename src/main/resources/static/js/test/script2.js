@@ -98,12 +98,12 @@ function quizActions() {
 							if (questEnd === (questNum + 1)) {
 								$('.btnNext')
 										.html(
-												'Finish <i class="fa fa-check" aria-hidden="true"></i>')
+												'Закончить <i class="fa fa-check" aria-hidden="true"></i>')
 							}
 							if (questEnd != (questNum + 1)) {
 								$('.btnNext')
 										.html(
-												'Next <i class="fa fa-chevron-right" aria-hidden="true"></i>')
+												'Далее <i class="fa fa-chevron-right" aria-hidden="true"></i>')
 							}
 							if (questNum != 2) {
 								$('.btnBack').removeClass('inactive')
@@ -121,7 +121,7 @@ function quizActions() {
 						if (questEnd != (questNum + 1)) {
 							$('.btnNext')
 									.html(
-											'Next <i class="fa fa-chevron-right" aria-hidden="true"></i>')
+											'Далее <i class="fa fa-chevron-right" aria-hidden="true"></i>')
 						}
 					});
 
@@ -150,7 +150,7 @@ function quizActions() {
 			if (stillUnAnswered.length < 2) {
 				$('.btnNext')
 						.html(
-								'Finish <i class="fa fa-check" aria-hidden="true"></i>');
+								'Закончить <i class="fa fa-check" aria-hidden="true"></i>');
 			}
 			if (stillUnAnswered.length < 1) {
 				checkAns();
@@ -216,19 +216,21 @@ window.onload = init;
 
 // get the quiz data from the external JSON file
 function getData() {
-//	$.getJSON("/api/tests/1", function(
-//			data) {
-//		console.log(data);
-//		quizSetupv2(data.questions);
-//	});
 	
+	var pathArray = window.location.pathname.split( '/' );
+	var lastLevelLocation=pathArray[pathArray.length-1];
+	console.log(pathArray);
+	console.log(lastLevelLocation);
+	
+	$('#indicator').show();
 	$.ajax
 	({
-		url: "/api/tests/1",
+		url: "/api/tests/" + lastLevelLocation,
 		type: 'GET',
         dataType: 'json', // added data type
         success: function(res) {
             console.log(res);
+            $('#indicator').hide();
             quizSetupv2(res.questions);
         }
 	});
@@ -305,8 +307,8 @@ function buildQuiz(qID, qText, qImage, qAnswers, qLength, qCorrectAnswers) {
 			+ '<img src="'
 			+ qImage
 			+'"/>'
-			+ '</h2><span class="quizAlert">This question requires an answer</span><div class="row justify-content-between">';
-	var quizBottom = '</div><footer><div class="row"><div class="col-sm-offset-3 col-sm-3 col-xs-6"><button class="btn btn-lg btn-default btnBack inactive"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button></div><div class="col-sm-3 col-xs-6"><button class="btn btn-lg btn-default btnNext">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></button></div></div></footer></section>';
+			+ '</h2><span class="quizAlert">Вопрос требует ответа</span><div class="row justify-content-between">';
+	var quizBottom = '</div><footer><div class="row"><div class="col-sm-offset-3 col-sm-3 col-xs-6"><button class="btn btn-lg btn-default btnBack inactive"><i class="fa fa-chevron-left" aria-hidden="true"></i> Назад</button></div><div class="col-sm-3 col-xs-6"><button class="btn btn-lg btn-default btnNext">Далее <i class="fa fa-chevron-right" aria-hidden="true"></i></button></div></div></footer></section>';
 	// assemble HTML parts
 	var quizPiece = quizTop + midCodeFull + quizBottom;
 	// inject each question/answer HTML into doc

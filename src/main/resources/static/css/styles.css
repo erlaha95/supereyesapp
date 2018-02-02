@@ -235,7 +235,7 @@ footer button.btn.btnBack.inactive:hover i {
 }
 
 button#getStarted {
-	position: absolute;
+	/* position: absolute; */
 	width: 50%;
 	left: 0;
 	right: 0;

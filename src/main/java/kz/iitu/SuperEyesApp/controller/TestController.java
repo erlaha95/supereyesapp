@@ -1,5 +1,8 @@
 package kz.iitu.SuperEyesApp.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,11 +49,6 @@ public class TestController {
 		return "test_result";
 	}
 	
-	@GetMapping("/test1")
-	public String showTest1() {
-		return "test_async";
-	}
-	
 	@GetMapping("/success")
 	public String showTestSuccess() {
 		return "success";
@@ -63,12 +61,13 @@ public class TestController {
 		if (test == null)
 			throw new NotFoundException("Тест не найден");
 		
-		UserAnswerForm form  = new UserAnswerForm();
-		
+//		UserAnswerForm form  = new UserAnswerForm();
+//		
 		model.addAttribute("test", test);
-		model.addAttribute("form", form);
+//		model.addAttribute("form", form);
+//		return "test_questions";
 		
-		return "test_questions";
+		return "test_async";
 	}
 	
 	@PostMapping("/addTest")
@@ -79,7 +78,9 @@ public class TestController {
 	
 	@GetMapping
 	public String showTests(Model model) {
-		model.addAttribute("tests", testRepo.findAll());
+		List<Test>tests = new ArrayList<>();
+		tests = testRepo.findAllEnabled();
+		model.addAttribute("tests", tests);
 		return "test_main";
 	}
 	

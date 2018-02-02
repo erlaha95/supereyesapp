@@ -98,12 +98,12 @@ function quizActions() {
 							if (questEnd === (questNum + 1)) {
 								$('.btnNext')
 										.html(
-												'Finish <i class="fa fa-check" aria-hidden="true"></i>')
+												'Закончить <i class="fa fa-check" aria-hidden="true"></i>')
 							}
 							if (questEnd != (questNum + 1)) {
 								$('.btnNext')
 										.html(
-												'Next <i class="fa fa-chevron-right" aria-hidden="true"></i>')
+												'Далее <i class="fa fa-chevron-right" aria-hidden="true"></i>')
 							}
 							if (questNum != 2) {
 								$('.btnBack').removeClass('inactive')
@@ -121,7 +121,7 @@ function quizActions() {
 						if (questEnd != (questNum + 1)) {
 							$('.btnNext')
 									.html(
-											'Next <i class="fa fa-chevron-right" aria-hidden="true"></i>')
+											'Далее <i class="fa fa-chevron-right" aria-hidden="true"></i>')
 						}
 					});
 
@@ -150,7 +150,7 @@ function quizActions() {
 			if (stillUnAnswered.length < 2) {
 				$('.btnNext')
 						.html(
-								'Finish <i class="fa fa-check" aria-hidden="true"></i>');
+								'Закончить <i class="fa fa-check" aria-hidden="true"></i>');
 			}
 			if (stillUnAnswered.length < 1) {
 				checkAns();
