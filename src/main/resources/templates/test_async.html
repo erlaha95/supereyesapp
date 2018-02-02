@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="@{fragments/header}"></div>
+<div th:replace="@{fragments/header_test}"></div>
 
 <body>
 
@@ -16,7 +16,7 @@
 					<small th:text="${test.name}"></small>
 				</h1>
 
-					
+				<div class="loading" id="indicator">Loading&#8230;</div>
 				
 				<div id="questionNow" class="row intro">
 					<div class="col-sm-offset-2 col-sm-8">
