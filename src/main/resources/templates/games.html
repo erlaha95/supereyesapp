@@ -14,10 +14,6 @@
           <h1 class="my-4">Игры для тренировки зрения
             <small></small>
           </h1>
-          <div>
-          	<iframe frameborder="0" width="100%" height="100%" 
-          		th:src="${game.flashGameUrl}"></iframe>
-          </div>
           
           <!-- Blog Post -->
           <div class="card mb-4" th:each="game : ${games}" th:unless="${#lists.isEmpty(games)}">
