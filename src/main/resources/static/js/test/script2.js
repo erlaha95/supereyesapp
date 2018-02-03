@@ -140,7 +140,7 @@ function quizActions() {
 			if (questNum > 1) {
 				$(questBack).attr('id', 'questionNow')
 			} else {
-				alert('You can\'t back up any more, silly!'); // user is already on first question
+				alert('Вы на первом вопросе!'); // user is already on first question
 				$(questNow).attr('id', 'questionNow')
 			}
 		} else if (direction === 'cleanup') {
