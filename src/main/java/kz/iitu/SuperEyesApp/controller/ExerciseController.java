@@ -22,7 +22,7 @@ public class ExerciseController {
 	public String showExercises(Model model) {
 		
 		List<Exercise>exercises =
-		exerciseRepo.findAll();
+		exerciseRepo.findAllEnabled();
 		
 		model.addAttribute("exercises", exercises);
 		
