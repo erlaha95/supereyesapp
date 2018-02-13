@@ -13,3 +13,26 @@ body {
     padding-top: 56px;
   }
 }
+
+p {
+	font-size: 22px;
+}
+
+.card-body {
+	font-size: 20px;
+}
+
+.nav-item {
+	font-size: 20px; 
+}
+
+.navbar-brand {
+	font-size: 25px;
+}
+
+.card img {
+	display: block;
+	width: 100%;
+	max-height: 350px;
+  	height: auto;
+}
