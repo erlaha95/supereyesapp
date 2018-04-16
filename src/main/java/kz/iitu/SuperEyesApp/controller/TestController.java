@@ -61,11 +61,7 @@ public class TestController {
 		if (test == null)
 			throw new NotFoundException("Тест не найден");
 		
-//		UserAnswerForm form  = new UserAnswerForm();
-//		
 		model.addAttribute("test", test);
-//		model.addAttribute("form", form);
-//		return "test_questions";
 		
 		return "test_async";
 	}
