@@ -1,10 +1,5 @@
 package kz.iitu.SuperEyesApp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-//@Entity
-//@Table(name="users")
 public class User {
 
 	private Integer id;
