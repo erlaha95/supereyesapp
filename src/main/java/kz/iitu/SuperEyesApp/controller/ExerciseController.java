@@ -21,8 +21,7 @@ public class ExerciseController {
 	@GetMapping
 	public String showExercises(Model model) {
 		
-		List<Exercise>exercises =
-		exerciseRepo.findAllEnabled();
+		List<Exercise>exercises = exerciseRepo.findAllEnabled();
 		
 		model.addAttribute("exercises", exercises);
 		
